@@ -14,12 +14,12 @@ class Movement extends Phaser.Scene {
         this.cameras.main.setBackgroundColor(0xDDDDDD)
 
         this.player = this.physics.add.sprite(width / 2, height / 2, "character", 1).setScale(2);
-        this.player.body.setCollideWorldBounds(true);
-        this.player.body.setSize(32, 32).setOffset(8, 16);
+        this.player.body.setCollideWorldBounds(true)
+        this.player.body.setSize(32, 32).setOffset(8, 16)
         
         this.PLAYER_VELOCITY = 350;
 
-        cursors = this.input.keyboard.createCursorKeys();
+        cursors = this.input.keyboard.createCursorKeys()
 
         this.anims.create({
             key: 'idle-down',
@@ -99,10 +99,11 @@ class Movement extends Phaser.Scene {
                 end: 10
             })
         })
+        playerDirection = "down"
     }
 
     update() {
-        let playerVector = new Phaser.Math.Vector2(0,0);
+        let playerVector = new Phaser.Math.Vector2(0,0)
         
         if (cursors.left.isDown){
             playerVector.x = -1
@@ -127,9 +128,9 @@ class Movement extends Phaser.Scene {
         //this.player += playerVector.x * this.PLAYER_VELOCITY
         //this.player += playerVector.y * this.PLAYER_VELOCITY
 
-        this.player.setVelocity(this.PLAYER_VELOCITY * playerVector.x, this.PLAYER_VELOCITY * playerVector.y);
+        this.player.setVelocity(this.PLAYER_VELOCITY * playerVector.x, this.PLAYER_VELOCITY * playerVector.y)
         let playerMovement;
-        playerVector.length() ? playerMovement = "walk" : playerMovement = "idle";
-        this.player.play(playerMovement + "-" + playerDirection, true);
+        playerVector.length() ? playerMovement = "walk" : playerMovement = "idle"
+        this.player.play(playerMovement + "-" + playerDirection, true)
     }
 }
